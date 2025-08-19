@@ -23,7 +23,6 @@ const checkUsersMaxLimitReached = () => {
 };
 
 const constructDictWithInitialValues = (arr) => {
-  if (chancesPerUser === 0) return;
   for (let i = 0; i < arr.length; i++) {
     maxChancesDict[arr[i]] = 0;
   }
@@ -52,7 +51,7 @@ const lockData = () => {
   document.querySelector("section").innerHTML = ``;
   chancesPerUser = Math.floor(noOfTopics / names.length);
 };
-
+let index = 1;
 const guessRandomMember = () => {
   if (noOfguesses) {
     if (!checkUsersMaxLimitReached()) {
@@ -60,7 +59,7 @@ const guessRandomMember = () => {
       let guessedMember = names[randomNumber] || "Not found";
       let sectiontag = document.querySelector("section");
       let divTag = document.createElement("div");
-      divTag.innerText = guessedMember;
+      divTag.innerText = index + " ) " + guessedMember;
       divTag.classList.add("guesseduser");
       sectiontag.appendChild(divTag);
       if (guessedMember !== "Not found") {
@@ -69,6 +68,7 @@ const guessRandomMember = () => {
           maxChancesDict[guessedMember]++;
           removeUserHavingMaxChances();
         }
+        index++;
       }
     } else {
       let randomNumber = Math.floor(Math.random() * initialNames.length);
@@ -76,13 +76,16 @@ const guessRandomMember = () => {
       let guessedMember = initialNames[randomNumber] || "Not found";
       let sectiontag = document.querySelector("section");
       let divTag = document.createElement("div");
-      divTag.innerText = guessedMember;
+      divTag.innerText = index + " ) " + guessedMember;
       divTag.classList.add("guesseduser");
       sectiontag.appendChild(divTag);
       noOfguesses--;
+      index++;
     }
     document.querySelector(
       "textarea"
-    ).innerText = `${noOfguesses} random guesses left ${chancesPerUser} max chances`;
+    ).innerText = `${noOfguesses} random guesses left - ${chancesPerUser} max chances per person`;
   }
+
+  console.log(maxChancesDict);
 };
