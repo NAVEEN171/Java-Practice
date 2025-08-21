@@ -51,7 +51,9 @@ const lockData = () => {
   document.querySelector("section").innerHTML = ``;
   chancesPerUser = Math.floor(noOfTopics / names.length);
 };
+
 let index = 1;
+
 const guessRandomMember = () => {
   if (noOfguesses) {
     if (!checkUsersMaxLimitReached()) {

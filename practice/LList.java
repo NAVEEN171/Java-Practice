@@ -1,4 +1,3 @@
-import java.util.LinkedList;
 
 public class LList {
     public static Node reverseLinkedList(Node head) {
@@ -44,7 +43,7 @@ public class LList {
         Node node5 = new Node(7);
         node4.assignNext(node5);
         printLL(node1);
-        System.out.println("---------------");
+        System.out.println("--------------");
         printLL(reverseLinkedList(node1));
     }
 
